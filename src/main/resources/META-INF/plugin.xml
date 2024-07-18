@@ -1,0 +1,43 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>org.code.generator.CodeGenerator</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>CodeGenerator</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="sk.kang@nhnpayco.com" url="https://www.payco.com/">NHN Payco</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description>welcome to the show, wooo woooowoooowowooo</description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- 설정 메뉴 추가 -->
+        <projectConfigurable instance="org.code.generator.Configuration" displayName="GenerateCodes Settings"/>
+        <!-- 설정 저장 -->
+        <applicationService serviceImplementation="org.code.generator.SettingService"/>
+    </extensions>
+    <actions>
+<!--        <group id="top" text="HelloMenu">-->
+<!--            <add-to-group group-id="MainMenu" anchor="last"  />-->
+<!--            <action id="id_Hello" class="org.code.generator.SayHello" text="Hello" description="안녕이라고 말합니다." />-->
+<!--        </group>-->
+        <action id="code.generateCode" class="org.code.generator.GenerateCodes" text="GenerateCodes"
+                description="코드를 생성합니다.">
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+        </action>
+        <action id="context.project.generateCodes" class="org.code.generator.GenerateCodes" text="GenerateCodes">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
